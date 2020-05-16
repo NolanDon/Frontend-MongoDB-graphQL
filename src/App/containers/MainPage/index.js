@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import createNoteMutation from './mutations/createNote';
 import deleteNoteMutation from './mutations/deleteNote';
 import updateNoteMutation from './mutations/updateNote';
+import { Button } from '@material-ui/core'
 
 const MainPage = ({ notes }) => {
   const [newNote, setNewNote] = useState('');
@@ -29,7 +30,10 @@ const MainPage = ({ notes }) => {
                 <li>{v.content}</li>
               )}
               <div style={{ display: 'flex' }}>
-                <button
+                <Button
+                color="blue"
+                size="medium"
+                variant="outlined"
                   onClick={() => {
                     if (isBeingUpdated) {
                       updateNoteMutation(v._id, noteContentBeingUpdated);
@@ -42,10 +46,14 @@ const MainPage = ({ notes }) => {
                   }}
                 >
                   update
-                </button>
-                <button onClick={() => deleteNoteMutation(v._id)}>
+                </Button>
+                <Button 
+                color="blue"
+                variant="outlined"
+                size="medium" 
+                onClick={() => deleteNoteMutation(v._id)}>
                   delete
-                </button>
+                </Button>
               </div>
             </div>
           );
@@ -57,7 +65,10 @@ const MainPage = ({ notes }) => {
           onChange={e => setNewNote(e.target.value)}
           placeholder='Add a note here'
         ></input>
-        <button
+        <Button
+        color="blue"
+        size="medium"
+        variant="outlined"
           onClick={() => {
             if (newNote) {
               createNoteMutation(newNote);
@@ -66,7 +77,7 @@ const MainPage = ({ notes }) => {
           }}
         >
           create note
-        </button>
+        </Button>
       </footer>
     </div>
   );
